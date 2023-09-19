@@ -67,7 +67,7 @@ export interface AboutMeImageSys {
 }
 
 export enum Type {
-  Link = 'Link',
+  Link = "Link",
 }
 
 export interface Item {
@@ -85,6 +85,8 @@ export interface ItemFields {
   testimonial: string;
   heroimage: AboutMeImage;
   heroText: string;
+  displayOrder: number;
+  idTag: string;
 }
 
 export interface ContentfulEntriesSys {
