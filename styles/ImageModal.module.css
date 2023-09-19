@@ -1,0 +1,20 @@
+.dlSvg > svg {
+  color: #0576bc;
+}
+
+.dlSvg:hover > svg {
+  cursor: pointer;
+}
+
+.button {
+  background-color: #0576bc;
+  border-color: #0576bc;
+}
+
+.button:hover,
+.button:active,
+.button:focus-visible {
+  color: black;
+  background-color: #ffdb40;
+  border-color: #ffdb40;
+}
