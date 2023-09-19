@@ -1,14 +1,15 @@
-import React from 'react';
-import Image from 'next/future/image';
-import Card from 'react-bootstrap/Card';
-import Markdown from 'markdown-to-jsx';
-import classes from '../../styles/AboutMe.module.css';
+import React from "react";
+import useNextBlurhash from "use-next-blurhash";
+import Image from "next/future/image";
+import Card from "react-bootstrap/Card";
+import Markdown from "markdown-to-jsx";
+import classes from "../../styles/AboutMe.module.css";
 
-import { ContentDataProps } from '../../interfaces/ContentDataProps';
+import { AboutMeSection } from "../../interfaces/ContentDataProps";
 
 interface AboutMeProps {
   reverse?: boolean;
-  data: ContentDataProps;
+  data: AboutMeSection;
   backgroundColored?: string;
 }
 
@@ -16,10 +17,19 @@ function AboutMe({ reverse = false, data, backgroundColored }: AboutMeProps) {
   const { fields, image } = data;
 
   const { title, aboutMeText } = fields;
-
+  const [blurDataUrl] = useNextBlurhash(image.encoded);
   const imageCont = (
     <div className={classes.cardImg}>
-      <Image fill src={`https:${image.url}`} quality="100" alt={image.title} priority placeholder="blur" blurDataURL={image.encoded} />
+      <Image
+        fill
+        src={`https:${image.url}`}
+        quality="100"
+        alt={image.title}
+        priority
+        placeholder="blur"
+        blurDataURL={blurDataUrl}
+        sizes="100%"
+      />
     </div>
   );
   const textCont = (
@@ -30,10 +40,25 @@ function AboutMe({ reverse = false, data, backgroundColored }: AboutMeProps) {
   );
 
   return (
-    <div className={classes.container} style={backgroundColored ? { backgroundColor: backgroundColored } : {}}>
+    <div
+      className={classes.container}
+      style={backgroundColored ? { backgroundColor: backgroundColored } : {}}
+    >
       <div className={reverse ? classes.innerReverse : classes.innerContainer}>
-        <Card className={reverse ? `${classes.box} ${classes.overlayReverse}` : classes.box}>{reverse ? textCont : imageCont}</Card>
-        <Card className={reverse ? classes.box : `${classes.box} ${classes.overlay}`}>{reverse ? imageCont : textCont}</Card>
+        <Card
+          className={
+            reverse ? `${classes.box} ${classes.overlayReverse}` : classes.box
+          }
+        >
+          {reverse ? textCont : imageCont}
+        </Card>
+        <Card
+          className={
+            reverse ? classes.box : `${classes.box} ${classes.overlay}`
+          }
+        >
+          {reverse ? imageCont : textCont}
+        </Card>
       </div>
     </div>
   );
