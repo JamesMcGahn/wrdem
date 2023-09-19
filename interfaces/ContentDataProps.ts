@@ -27,3 +27,7 @@ export interface HomeHero {
   fields: HeroImageSectionFields;
   image: ImageProps;
 }
+
+export interface AccomplishSummarySection {
+  accomplishlist: string;
+}

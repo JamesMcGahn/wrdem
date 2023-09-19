@@ -1,7 +1,6 @@
 import type { GetStaticProps } from "next";
 import React from "react";
 import Head from "next/head";
-import Markdown from "markdown-to-jsx";
 import axios from "axios";
 import Layout from "../components/layout/Layout";
 import styles from "../styles/Home.module.css";
@@ -9,25 +8,26 @@ import HeroWide from "../components/sections/HeroWide";
 import AboutMe from "../components/sections/AboutMe";
 import {
   AboutMeSection,
+  AccomplishSummarySection,
   HomeHero,
   ImageProps,
 } from "../interfaces/ContentDataProps";
-import { ItemFields, ContentfulEntries } from "../interfaces/ContentfulEntries";
-import Testominal from "../components/sections/Testimonial";
+import { ContentfulEntries } from "../interfaces/ContentfulEntries";
+import AccomplishSummary from "../components/sections/AccomplishSummary";
 import FeatureImage from "../components/sections/FeatureImage";
 import encodeImg2hash from "../utils/encodeImg2hash";
 
 type Props = {
   aboutMe: AboutMeSection[];
   homeHero: HomeHero[];
-  testimonial: ItemFields;
+  accomplishSum: AccomplishSummarySection;
   featureImage: ImageProps;
 };
 
-const Home = ({ aboutMe, homeHero, testimonial, featureImage }: Props) => {
+const Home = ({ aboutMe, homeHero, featureImage, accomplishSum }: Props) => {
   const heroImg = homeHero[0].image;
   const heroText = homeHero[0].fields;
-  console.log(heroText);
+
   return (
     <Layout>
       <div className={styles.container}>
@@ -57,7 +57,7 @@ const Home = ({ aboutMe, homeHero, testimonial, featureImage }: Props) => {
             title={heroText.title}
             subtitle={heroText.subtitle}
           />
-
+          <AccomplishSummary text={accomplishSum.accomplishlist} />
           {aboutMe.map((bio, i) => (
             <div
               id={bio.fields.idTag}
@@ -76,10 +76,6 @@ const Home = ({ aboutMe, homeHero, testimonial, featureImage }: Props) => {
             imgLink={`https:${featureImage.url}`}
             altText={featureImage.title}
             imgHash={featureImage.encoded}
-          />
-          <Testominal
-            author={testimonial.author}
-            quote={testimonial.testimonial}
           />
         </main>
       </div>
@@ -102,6 +98,9 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const testominal = await axios(
     `https://cdn.contentful.com/spaces/nc2tb1hvkxx7/entries/2cqEfvEhTOLklRw3cFRZ0h?access_token=${process.env.CONTENTFUL_TOKEN}`,
+  );
+  const accomplishSum = await axios(
+    `https://cdn.contentful.com/spaces/nc2tb1hvkxx7/entries/1bnp0BEmJkhX9QZHIpwkoQ?access_token=${process.env.CONTENTFUL_TOKEN}`,
   );
 
   const featureImageData = await axios(
@@ -157,6 +156,7 @@ export const getStaticProps: GetStaticProps = async () => {
       homeHero: heroData,
       testimonial: testominal.data.fields,
       featureImage,
+      accomplishSum: accomplishSum.data.fields,
     },
   };
 };
