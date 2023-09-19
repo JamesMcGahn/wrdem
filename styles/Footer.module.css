@@ -3,7 +3,7 @@
   padding: 3rem 3rem 1rem 3rem;
   display: flex;
   justify-content: center;
-  background-color: #dcdcdc;
+  background-color: #a21e28;
 }
 
 .innercontainer {
@@ -12,7 +12,7 @@
   display: flex;
   width: 100%;
   min-height: 10vh;
-  color: black;
+  color: white;
 }
 
 .container svg {
@@ -39,7 +39,9 @@
 }
 
 .left svg:hover {
-  text-shadow: -1px -1px 1px rgba(255, 255, 255, 0.1), 1px 1px 1px rgba(0, 0, 0, 0.5);
+  text-shadow:
+    -1px -1px 1px rgba(255, 255, 255, 0.1),
+    1px 1px 1px rgba(0, 0, 0, 0.5);
   color: #cbb682;
 }
 @media (max-width: 450px) {
