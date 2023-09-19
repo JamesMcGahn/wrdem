@@ -1,5 +1,4 @@
 import React from "react";
-import useNextBlurhash from "use-next-blurhash";
 import Image from "next/future/image";
 import Card from "react-bootstrap/Card";
 import Markdown from "markdown-to-jsx";
@@ -17,7 +16,7 @@ function AboutMe({ reverse = false, data, backgroundColored }: AboutMeProps) {
   const { fields, image } = data;
 
   const { title, aboutMeText } = fields;
-  const [blurDataUrl] = useNextBlurhash(image.encoded);
+
   const imageCont = (
     <div className={classes.cardImg}>
       <Image
@@ -27,7 +26,7 @@ function AboutMe({ reverse = false, data, backgroundColored }: AboutMeProps) {
         alt={image.title}
         priority
         placeholder="blur"
-        blurDataURL={blurDataUrl}
+        blurDataURL={`https:${image.url}?w=100&q=5`}
         sizes="100%"
       />
     </div>

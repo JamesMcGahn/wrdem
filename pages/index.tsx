@@ -64,7 +64,6 @@ const Home = ({
           <HeroWide
             imgLink={`https:${heroImg.url}`}
             altText={heroImg.title}
-            imgHash={heroImg.encoded}
             title={heroText.title}
             subtitle={heroText.subtitle}
           />
@@ -86,12 +85,10 @@ const Home = ({
           <FeatureImage
             imgLink={`https:${featureImage.url}`}
             altText={featureImage.title}
-            imgHash={featureImage.encoded}
           />
           <FeatureImage
             imgLink={`https:${featureImage2.url}`}
             altText={featureImage2.title}
-            imgHash={featureImage2.encoded}
           />
           <VoteCall2Action fields={voteCall2Action} />
         </main>
