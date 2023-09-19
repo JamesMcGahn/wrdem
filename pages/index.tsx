@@ -5,7 +5,7 @@ import Markdown from "markdown-to-jsx";
 import axios from "axios";
 import Layout from "../components/layout/Layout";
 import styles from "../styles/Home.module.css";
-import Hero from "../components/sections/Hero";
+import HeroWide from "../components/sections/HeroWide";
 import AboutMe from "../components/sections/AboutMe";
 import {
   AboutMeSection,
@@ -27,7 +27,7 @@ type Props = {
 const Home = ({ aboutMe, homeHero, testimonial, featureImage }: Props) => {
   const heroImg = homeHero[0].image;
   const heroText = homeHero[0].fields;
-
+  console.log(heroText);
   return (
     <Layout>
       <div className={styles.container}>
@@ -50,15 +50,13 @@ const Home = ({ aboutMe, homeHero, testimonial, featureImage }: Props) => {
           />
         </Head>
         <main className={styles.main}>
-          <Hero
+          <HeroWide
             imgLink={`https:${heroImg.url}`}
             altText={heroImg.title}
             imgHash={heroImg.encoded}
-          >
-            <Markdown options={{ wrapper: React.Fragment }}>
-              {heroText.heroText}
-            </Markdown>
-          </Hero>
+            title={heroText.title}
+            subtitle={heroText.subtitle}
+          />
 
           {aboutMe.map((bio, i) => (
             <div
@@ -98,7 +96,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const { data } = res;
 
   const hero = await axios(
-    `https://cdn.contentful.com/spaces/nc2tb1hvkxx7/entries?access_token=${process.env.CONTENTFUL_TOKEN}&content_type=homehero`,
+    `https://cdn.contentful.com/spaces/nc2tb1hvkxx7/entries?access_token=${process.env.CONTENTFUL_TOKEN}&content_type=homeheroWide`,
   );
   const heros = hero.data;
 
@@ -107,7 +105,7 @@ export const getStaticProps: GetStaticProps = async () => {
   );
 
   const featureImageData = await axios(
-    `https://cdn.contentful.com/spaces/nc2tb1hvkxx7/assets/21BVaK2SMNL68GLjsdNYyY?access_token=${process.env.CONTENTFUL_TOKEN}`,
+    `https://cdn.contentful.com/spaces/nc2tb1hvkxx7/assets/3HO2b7Ut0FfwZGHkrnsImX?access_token=${process.env.CONTENTFUL_TOKEN}`,
   );
   const fiFields = featureImageData.data.fields;
 
@@ -149,15 +147,9 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const heroData = await getDataNImages(heros, "heroimage");
 
-  aboutMeData = aboutMeData.sort((a, b) => {
-    if (a.fields.displayOrder === 1 && b.fields.displayOrder !== 1) {
-      return -1;
-    }
-    if (a.fields.displayOrder !== 1 && b.fields.displayOrder === 1) {
-      return 1;
-    }
-    return 0;
-  });
+  aboutMeData = aboutMeData.sort(
+    (a, b) => a.fields.displayOrder - b.fields.displayOrder,
+  );
 
   return {
     props: {

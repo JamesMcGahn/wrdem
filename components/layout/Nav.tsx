@@ -1,11 +1,11 @@
-import React from 'react';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import Link from 'next/link';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSquareFacebook } from '@fortawesome/free-brands-svg-icons';
-import classes from '../../styles/Nav.module.css';
+import React from "react";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSquareFacebook } from "@fortawesome/free-brands-svg-icons";
+import classes from "../../styles/Nav.module.css";
 
 function MainNav() {
   return (
@@ -16,7 +16,10 @@ function MainNav() {
             <Navbar.Brand href="#home">Wood-Ridge Democrats</Navbar.Brand>
           </Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
+          <Navbar.Collapse
+            id="basic-navbar-nav"
+            className="justify-content-end"
+          >
             <Nav className="ml-auto">
               <div className={classes.navLinks}>
                 <Link href="/" passHref className={classes.navLinks}>
@@ -24,13 +27,18 @@ function MainNav() {
                 </Link>
               </div>
               <div className={classes.navLinks}>
-                <Link href="/#about-michele" passHref>
-                  <Nav.Link className={classes.navLinks}>About Michele</Nav.Link>
+                <Link href="/#about-paul" passHref>
+                  <Nav.Link className={classes.navLinks}>About Paul</Nav.Link>
                 </Link>
               </div>
               <div className={classes.navLinks}>
-                <Link href="/#about-mike" passHref>
-                  <Nav.Link>About Mike</Nav.Link>
+                <Link href="/#about-dom" passHref>
+                  <Nav.Link>About Dom</Nav.Link>
+                </Link>
+              </div>
+              <div className={classes.navLinks}>
+                <Link href="/#about-phil" passHref>
+                  <Nav.Link>About Phil</Nav.Link>
                 </Link>
               </div>
               <div className={classes.navLinks}>
@@ -41,7 +49,12 @@ function MainNav() {
             </Nav>
           </Navbar.Collapse>
         </Container>
-        <a id={classes.fbLink} href="https://www.facebook.com/WRDems" target="_blank" rel="noopener noreferrer">
+        <a
+          id={classes.fbLink}
+          href="https://www.facebook.com/WRDems"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <FontAwesomeIcon icon={faSquareFacebook} />
         </a>
       </Navbar>
