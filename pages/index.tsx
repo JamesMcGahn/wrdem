@@ -11,9 +11,11 @@ import {
   AccomplishSummarySection,
   HomeHero,
   ImageProps,
+  VoteCall2ActionSection,
 } from "../interfaces/ContentDataProps";
 import { ContentfulEntries } from "../interfaces/ContentfulEntries";
 import AccomplishSummary from "../components/sections/AccomplishSummary";
+import VoteCall2Action from "../components/sections/VoteCall2Action";
 import FeatureImage from "../components/sections/FeatureImage";
 import encodeImg2hash from "../utils/encodeImg2hash";
 
@@ -22,12 +24,19 @@ type Props = {
   homeHero: HomeHero[];
   accomplishSum: AccomplishSummarySection;
   featureImage: ImageProps;
+  voteCall2Action: VoteCall2ActionSection;
 };
 
-const Home = ({ aboutMe, homeHero, featureImage, accomplishSum }: Props) => {
+const Home = ({
+  aboutMe,
+  homeHero,
+  featureImage,
+  accomplishSum,
+  voteCall2Action,
+}: Props) => {
   const heroImg = homeHero[0].image;
   const heroText = homeHero[0].fields;
-
+  console.log(voteCall2Action);
   return (
     <Layout>
       <div className={styles.container}>
@@ -77,6 +86,7 @@ const Home = ({ aboutMe, homeHero, featureImage, accomplishSum }: Props) => {
             altText={featureImage.title}
             imgHash={featureImage.encoded}
           />
+          <VoteCall2Action fields={voteCall2Action} />
         </main>
       </div>
     </Layout>
@@ -101,6 +111,9 @@ export const getStaticProps: GetStaticProps = async () => {
   );
   const accomplishSum = await axios(
     `https://cdn.contentful.com/spaces/nc2tb1hvkxx7/entries/1bnp0BEmJkhX9QZHIpwkoQ?access_token=${process.env.CONTENTFUL_TOKEN}`,
+  );
+  const voteCall2Action = await axios(
+    `https://cdn.contentful.com/spaces/nc2tb1hvkxx7/entries/4UKuYK2It9JIefwCqBzszC?access_token=${process.env.CONTENTFUL_TOKEN}`,
   );
 
   const featureImageData = await axios(
@@ -157,6 +170,7 @@ export const getStaticProps: GetStaticProps = async () => {
       testimonial: testominal.data.fields,
       featureImage,
       accomplishSum: accomplishSum.data.fields,
+      voteCall2Action: voteCall2Action.data.fields,
     },
   };
 };

@@ -31,3 +31,9 @@ export interface HomeHero {
 export interface AccomplishSummarySection {
   accomplishlist: string;
 }
+
+export interface VoteCall2ActionSection {
+  electorReelect: string;
+  candidates: string;
+  electiondateday: string;
+}

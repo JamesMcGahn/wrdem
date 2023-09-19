@@ -1,0 +1,163 @@
+.container {
+  margin-top: 4rem;
+  width: 100vw;
+  padding: 2rem 2rem;
+  display: flex;
+  justify-content: center;
+  background: #0576bc;
+}
+
+.innercontainer {
+  background: #0576bc;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  text-shadow:
+    -1px -1px 1px rgba(255, 255, 255, 0.1),
+    1px 1px 1px rgba(0, 0, 0, 0.5);
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: bold;
+}
+
+.centerDiv {
+  display: flex;
+  flex-direction: row;
+}
+
+.candidates {
+  width: 80%;
+}
+
+.dateBox {
+  width: 25%;
+  background: #a21e28;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80%;
+  font-size: 2rem;
+  padding: 1rem;
+}
+
+.dateBox span {
+  display: block;
+  color: white;
+}
+
+.dateBox span.highlight {
+  color: #fdd74c;
+}
+.candidates ul {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.candidates li {
+  font-style: normal;
+  color: #fdd74c;
+  font-size: 4rem;
+}
+
+.electOrReelect {
+  color: #fdd74c;
+  font-size: 2.2rem;
+}
+
+.candidates li em {
+  font-style: normal;
+  color: white;
+  font-size: 2.2rem;
+}
+
+@media (min-width: 1500px) {
+}
+
+/*  Large devices (desktops, 992px and up) */
+
+@media (max-width: 1400px) {
+  .innercontainer {
+    width: 75%;
+  }
+}
+
+@media (max-width: 1165px) {
+  .innercontainer {
+    width: 85%;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+
+@media (max-width: 975px) {
+  .innercontainer {
+    width: 95%;
+  }
+}
+
+@media (max-width: 867px) {
+  .centerDiv {
+    flex-direction: column;
+    align-items: center;
+  }
+  .dateBox {
+    width: 50%;
+  }
+}
+@media (max-width: 768px) {
+  .candidates li {
+    font-size: 3.6rem;
+  }
+
+  .electOrReelect {
+    font-size: 1.8rem;
+  }
+
+  .candidates li em {
+    font-size: 1.8rem;
+  }
+}
+@media (max-width: 668px) {
+  .candidates li {
+    font-size: 3rem;
+  }
+
+  .electOrReelect {
+    font-size: 1.5rem;
+  }
+
+  .candidates li em {
+    font-size: 1.5rem;
+  }
+}
+@media (max-width: 550px) {
+  .candidates li {
+    font-size: 2rem;
+  }
+
+  .electOrReelect {
+    font-size: 1rem;
+  }
+
+  .candidates li em {
+    font-size: 1rem;
+  }
+
+  .dateBox {
+    width: 80%;
+  }
+}
+@media (max-width: 375px) {
+  .candidates li {
+    font-size: 1.5rem;
+  }
+
+  .electOrReelect {
+    font-size: 1rem;
+  }
+
+  .candidates li em {
+    font-size: 0.75rem;
+  }
+}
