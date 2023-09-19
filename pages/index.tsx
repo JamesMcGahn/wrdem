@@ -36,7 +36,7 @@ const Home = ({
 }: Props) => {
   const heroImg = homeHero[0].image;
   const heroText = homeHero[0].fields;
-  console.log(voteCall2Action);
+
   return (
     <Layout>
       <div className={styles.container}>

@@ -12,8 +12,6 @@ interface HeroProps {
 
 function HeroWide({ imgLink, title, subtitle, altText, imgHash }: HeroProps) {
   const titleSplit = title.split(/(Re-Elect|Elect)/).filter(Boolean);
-  console.log(titleSplit);
-  console.log(title);
 
   return (
     <div className={classes.container}>

@@ -1,15 +1,15 @@
-import React, { ReactNode } from 'react';
-import Head from 'next/head';
-import Nav from './Nav';
-import Footer from './Footer';
-import classes from '../../styles/Layout.module.css';
+import React, { ReactNode } from "react";
+import Head from "next/head";
+import Nav from "./Nav";
+import Footer from "./Footer";
+import classes from "../../styles/Layout.module.css";
 
 type Props = {
   children?: ReactNode;
   title?: string;
 };
 
-const Layout = ({ children, title = '' }: Props) => (
+const Layout = ({ children, title = "" }: Props) => (
   <>
     <Head>
       <title>{title}</title>
