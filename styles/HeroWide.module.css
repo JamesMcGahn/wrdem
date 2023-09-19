@@ -1,9 +1,9 @@
 .container {
   width: 100%;
-  padding: 1rem;
+  padding: 3rem 7rem;
   display: flex;
   justify-content: center;
-  height: 95vh;
+  height: 100%;
 }
 
 .innercontainer {
@@ -63,12 +63,6 @@
   position: relative !important;
 }
 
-@media (min-width: 1100px) {
-  .container {
-    padding: 3rem;
-  }
-}
-
 /*  Large devices (desktops, 992px and up) */
 
 @media (max-width: 1100px) {
@@ -81,6 +75,7 @@
   }
   .container {
     padding: 3rem;
+    height: 100%;
   }
 
   .innercontainer {

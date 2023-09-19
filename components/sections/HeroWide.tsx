@@ -1,4 +1,5 @@
 import React from "react";
+import useNextBlurhash from "use-next-blurhash";
 import Image from "next/future/image";
 import classes from "../../styles/HeroWide.module.css";
 
@@ -12,7 +13,7 @@ interface HeroProps {
 
 function HeroWide({ imgLink, title, subtitle, altText, imgHash }: HeroProps) {
   const titleSplit = title.split(/(Re-Elect|Elect)/).filter(Boolean);
-
+  const [blurDataUrl] = useNextBlurhash(imgHash);
   return (
     <div className={classes.container}>
       <div className={classes.innercontainer}>
@@ -27,7 +28,7 @@ function HeroWide({ imgLink, title, subtitle, altText, imgHash }: HeroProps) {
             src={imgLink}
             alt={altText}
             placeholder="blur"
-            blurDataURL={imgHash}
+            blurDataURL={blurDataUrl}
             fill
             priority
           />

@@ -24,6 +24,7 @@ type Props = {
   homeHero: HomeHero[];
   accomplishSum: AccomplishSummarySection;
   featureImage: ImageProps;
+  featureImage2: ImageProps;
   voteCall2Action: VoteCall2ActionSection;
 };
 
@@ -31,6 +32,7 @@ const Home = ({
   aboutMe,
   homeHero,
   featureImage,
+  featureImage2,
   accomplishSum,
   voteCall2Action,
 }: Props) => {
@@ -86,6 +88,11 @@ const Home = ({
             altText={featureImage.title}
             imgHash={featureImage.encoded}
           />
+          <FeatureImage
+            imgLink={`https:${featureImage2.url}`}
+            altText={featureImage2.title}
+            imgHash={featureImage2.encoded}
+          />
           <VoteCall2Action fields={voteCall2Action} />
         </main>
       </div>
@@ -119,12 +126,22 @@ export const getStaticProps: GetStaticProps = async () => {
   const featureImageData = await axios(
     `https://cdn.contentful.com/spaces/nc2tb1hvkxx7/assets/3HO2b7Ut0FfwZGHkrnsImX?access_token=${process.env.CONTENTFUL_TOKEN}`,
   );
+  const featureImageData2 = await axios(
+    `https://cdn.contentful.com/spaces/nc2tb1hvkxx7/assets/3mBLFbKmqtQmlHVGOrDCnn?access_token=${process.env.CONTENTFUL_TOKEN}`,
+  );
   const fiFields = featureImageData.data.fields;
+  const fiFields2 = featureImageData2.data.fields;
 
   const featureImage = {
     url: fiFields.file.url,
     title: fiFields.title,
     encoded: await encodeImg2hash(`https:${fiFields.file.url}`),
+  };
+
+  const featureImage2 = {
+    url: fiFields2.file.url,
+    title: fiFields2.title,
+    encoded: await encodeImg2hash(`https:${fiFields2.file.url}`),
   };
 
   type FieldName = "aboutMeImage" | "heroimage";
@@ -169,6 +186,7 @@ export const getStaticProps: GetStaticProps = async () => {
       homeHero: heroData,
       testimonial: testominal.data.fields,
       featureImage,
+      featureImage2,
       accomplishSum: accomplishSum.data.fields,
       voteCall2Action: voteCall2Action.data.fields,
     },
