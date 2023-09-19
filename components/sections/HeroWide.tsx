@@ -26,7 +26,7 @@ function HeroWide({ imgLink, title, subtitle, altText }: HeroProps) {
             src={imgLink}
             alt={altText}
             placeholder="blur"
-            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mMMiI2tBwADmgGLaAtlQgAAAABJRU5ErkJggg=="
+            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAJCAYAAAA7KqwyAAAAF0lEQVR42mNsbKyrZ6AAMI4aMGoAEAAAsNISAVLcKWsAAAAASUVORK5CYII="
             fill
             priority
           />
