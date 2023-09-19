@@ -18,7 +18,7 @@ function Hero({ imgLink, children, altText }: HeroProps) {
             src={imgLink}
             alt={altText}
             placeholder="blur"
-            blurDataURL={`https:${imgLink}?w=100&q=5`}
+            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mMMiI2tBwADmgGLaAtlQgAAAABJRU5ErkJggg=="
             fill
             priority
           />

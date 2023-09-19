@@ -17,7 +17,7 @@ function FeatureImage({ imgLink, altText }: FeatureImageProps) {
             alt={altText}
             fill
             placeholder="blur"
-            blurDataURL={`https:${imgLink}?w=100&q=5`}
+            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mMMiI2tBwADmgGLaAtlQgAAAABJRU5ErkJggg=="
           />
         </div>
       </div>

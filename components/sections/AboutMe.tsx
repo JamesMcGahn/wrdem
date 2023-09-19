@@ -26,7 +26,7 @@ function AboutMe({ reverse = false, data, backgroundColored }: AboutMeProps) {
         alt={image.title}
         priority
         placeholder="blur"
-        blurDataURL={`https:${image.url}?w=100&q=5`}
+        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mMMiI2tBwADmgGLaAtlQgAAAABJRU5ErkJggg=="
         sizes="100%"
       />
     </div>
