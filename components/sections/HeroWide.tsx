@@ -10,7 +10,7 @@ interface HeroProps {
 }
 
 function HeroWide({ imgLink, title, subtitle, altText }: HeroProps) {
-  const titleSplit = title.split(/(Re-Elect|Elect)/).filter(Boolean);
+  const titleSplit = title.split(/(Re-Elect|Elect|VOTE)/).filter(Boolean);
 
   return (
     <div className={classes.container}>

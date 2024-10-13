@@ -1,28 +1,41 @@
 import React from "react";
+import type { GetStaticProps } from "next";
+import axios from "axios";
 import Head from "next/head";
 import ImageModal from "../../components/ui/ImageModal";
 import Layout from "../../components/layout/Layout";
 import styles from "../../styles/Literature.module.css";
+import { AboutMeSection } from "../../interfaces/ContentDataProps";
+import encodeImg2hash from "../../utils/encodeImg2hash";
+import electionBios from "../../public/static/imgs/2024camplit/WR-2024-Election-Bios.jpg";
+import electionTeam from "../../public/static/imgs/2024camplit/WR-2024-Election-Team.jpg";
+import { ContentfulEntries } from "../../interfaces/ContentfulEntries";
 
-import electionBios from "../../public/static/imgs/2023camplit/WR-2023-Election-Bios.jpg";
-import electionTeam from "../../public/static/imgs/2023camplit/WR-2023-Election-Team.jpg";
+type Props = {
+  aboutMe: AboutMeSection[];
+};
 
-const Literature = () => {
+const Literature = ({ aboutMe }: Props) => {
   const imagesArry = [
     {
       img: electionBios,
-      alt: "2023 Re-Elect Team Sarlo Bios",
+      alt: "2024 Vote Team Sarlo Bios",
       priority: true,
     },
     {
       img: electionTeam,
-      alt: "2023 Re-Elect Team Sarlo",
+      alt: "2024 Vote Team Sarlo",
       priority: false,
     },
   ];
 
+  const navBios = aboutMe.map((bio) => ({
+    href: bio.fields.idTag,
+    display: bio.fields.title,
+  }));
+
   return (
-    <Layout>
+    <Layout navBios={navBios}>
       <div className={styles.container}>
         <Head>
           <meta name="robots" content="all" />
@@ -55,3 +68,50 @@ const Literature = () => {
 };
 
 export default Literature;
+
+export const getStaticProps: GetStaticProps = async () => {
+  const res = await axios(
+    `https://cdn.contentful.com/spaces/nc2tb1hvkxx7/entries?access_token=${process.env.CONTENTFUL_TOKEN}&content_type=aboutMe`,
+  );
+  const { data } = res;
+
+  type FieldName = "aboutMeImage" | "heroimage";
+
+  async function getDataNImages(
+    contData: ContentfulEntries,
+    fieldname: FieldName,
+  ) {
+    return Promise.all(
+      contData.items.map(async (item) => {
+        const imageId = item.fields[fieldname].sys.id;
+        const imageInfo = contData.includes.Asset.find(
+          (img) => img.sys.id === imageId,
+        );
+        const imageURL = imageInfo?.fields.file.url;
+
+        const encodedImg = await encodeImg2hash(`https:${imageURL}`);
+        const { fields } = item;
+
+        const image = {
+          url: imageURL || "",
+          title: imageInfo?.fields.title || "",
+          encoded: encodedImg,
+        };
+
+        return { fields, image };
+      }),
+    );
+  }
+
+  let aboutMeData = await getDataNImages(data, "aboutMeImage");
+
+  aboutMeData = aboutMeData.sort(
+    (a, b) => a.fields.displayOrder - b.fields.displayOrder,
+  );
+
+  return {
+    props: {
+      aboutMe: aboutMeData,
+    },
+  };
+};

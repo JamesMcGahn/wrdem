@@ -1,65 +1,50 @@
 import type { GetStaticProps } from "next";
 import React from "react";
-import Head from "next/head";
 import axios from "axios";
 import Layout from "../components/layout/Layout";
 import styles from "../styles/Home.module.css";
 import HeroWide from "../components/sections/HeroWide";
 import AboutMe from "../components/sections/AboutMe";
+import Testimonial from "../components/sections/Testimonial";
 import {
   AboutMeSection,
   AccomplishSummarySection,
   HomeHero,
-  ImageProps,
+  Testimonials,
   VoteCall2ActionSection,
 } from "../interfaces/ContentDataProps";
 import { ContentfulEntries } from "../interfaces/ContentfulEntries";
 import AccomplishSummary from "../components/sections/AccomplishSummary";
 import VoteCall2Action from "../components/sections/VoteCall2Action";
-import FeatureImage from "../components/sections/FeatureImage";
+// import FeatureImage from "../components/sections/FeatureImage";
 import encodeImg2hash from "../utils/encodeImg2hash";
 
 type Props = {
   aboutMe: AboutMeSection[];
   homeHero: HomeHero[];
   accomplishSum: AccomplishSummarySection;
-  featureImage: ImageProps;
-  featureImage2: ImageProps;
+  testimonial: Testimonials[];
   voteCall2Action: VoteCall2ActionSection;
 };
 
 const Home = ({
   aboutMe,
   homeHero,
-  featureImage,
-  featureImage2,
   accomplishSum,
   voteCall2Action,
+  testimonial,
 }: Props) => {
   const heroImg = homeHero[0].image;
   const heroText = homeHero[0].fields;
 
+  const navBios = aboutMe.map((bio) => ({
+    href: bio.fields.idTag,
+    display: bio.fields.title,
+  }));
+
   return (
-    <Layout>
+    <Layout navBios={navBios}>
       <div className={styles.container}>
-        <Head>
-          <meta name="robots" content="all" />
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0"
-          />
-          <title>Wood-Ridge Dems</title>
-          <meta name="description" content="Wood-Ridge Democrats" />
-          <link rel="icon" href="/favicon.ico" />
-          <meta property="og:type" content="website" />
-          <meta property="og:url" content="https://www.wrdems.com/" />
-          <meta property="og:title" content="Wood-Ridge Democrats" />
-          <meta property="og:description" content="Elect The Sarlo Team" />
-          <meta
-            property="og:image"
-            content="https://www.wrdems.com/static/imgs/sarloteam.jpeg"
-          />
-        </Head>
         <main className={styles.main}>
           <HeroWide
             imgLink={`https:${heroImg.url}`}
@@ -81,15 +66,19 @@ const Home = ({
               )}
             </div>
           ))}
+          <Testimonial
+            quote={testimonial[0].fields.testimonial}
+            author={testimonial[0].fields.author}
+          />
 
-          <FeatureImage
+          {/* <FeatureImage
             imgLink={`https:${featureImage.url}`}
             altText={featureImage.title}
           />
           <FeatureImage
             imgLink={`https:${featureImage2.url}`}
             altText={featureImage2.title}
-          />
+          /> */}
           <VoteCall2Action fields={voteCall2Action} />
         </main>
       </div>
@@ -111,8 +100,10 @@ export const getStaticProps: GetStaticProps = async () => {
   const heros = hero.data;
 
   const testominal = await axios(
-    `https://cdn.contentful.com/spaces/nc2tb1hvkxx7/entries/2cqEfvEhTOLklRw3cFRZ0h?access_token=${process.env.CONTENTFUL_TOKEN}`,
+    `https://cdn.contentful.com/spaces/nc2tb1hvkxx7/entries?access_token=${process.env.CONTENTFUL_TOKEN}&content_type=testimonial`,
   );
+  const testData = testominal.data;
+
   const accomplishSum = await axios(
     `https://cdn.contentful.com/spaces/nc2tb1hvkxx7/entries/1bnp0BEmJkhX9QZHIpwkoQ?access_token=${process.env.CONTENTFUL_TOKEN}`,
   );
@@ -141,7 +132,7 @@ export const getStaticProps: GetStaticProps = async () => {
     encoded: await encodeImg2hash(`https:${fiFields2.file.url}`),
   };
 
-  type FieldName = "aboutMeImage" | "heroimage";
+  type FieldName = "aboutMeImage" | "heroimage" | "image";
 
   async function getDataNImages(
     contData: ContentfulEntries,
@@ -173,6 +164,8 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const heroData = await getDataNImages(heros, "heroimage");
 
+  const testimonData = await getDataNImages(testData, "image");
+
   aboutMeData = aboutMeData.sort(
     (a, b) => a.fields.displayOrder - b.fields.displayOrder,
   );
@@ -181,7 +174,7 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       aboutMe: aboutMeData,
       homeHero: heroData,
-      testimonial: testominal.data.fields,
+      testimonial: testimonData,
       featureImage,
       featureImage2,
       accomplishSum: accomplishSum.data.fields,

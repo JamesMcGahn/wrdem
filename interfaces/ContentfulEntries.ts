@@ -87,6 +87,7 @@ export interface ItemFields {
   heroText: string;
   displayOrder: number;
   idTag: string;
+  image: AboutMeImage;
 }
 
 export interface ContentfulEntriesSys {

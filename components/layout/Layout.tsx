@@ -3,21 +3,32 @@ import Head from "next/head";
 import Nav from "./Nav";
 import Footer from "./Footer";
 import classes from "../../styles/Layout.module.css";
+import { NavBios } from "../../interfaces/ContentDataProps";
 
 type Props = {
   children?: ReactNode;
-  title?: string;
+  navBios: NavBios[];
 };
 
-const Layout = ({ children, title = "" }: Props) => (
+const Layout = ({ children, navBios }: Props) => (
   <>
     <Head>
-      <title>{title}</title>
-      <meta charSet="utf-8" />
-      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      <meta name="robots" content="all" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Wood-Ridge Dems</title>
+      <meta name="description" content="Wood-Ridge Democrats" />
+      <link rel="icon" href="/favicon.ico" />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://www.wrdems.com/" />
+      <meta property="og:title" content="Wood-Ridge Democrats" />
+      <meta property="og:description" content="Elect The Sarlo Team" />
+      <meta
+        property="og:image"
+        content="https://www.wrdems.com/static/imgs/sarloteam.jpeg"
+      />
     </Head>
     <header>
-      <Nav />
+      <Nav navBios={navBios} />
     </header>
     <div className={classes.main}>{children}</div>
     <Footer />

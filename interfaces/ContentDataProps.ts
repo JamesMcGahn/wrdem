@@ -1,7 +1,22 @@
+export interface NavBios {
+  href: string;
+  display: string;
+}
+
 export interface ImageProps {
   url: string;
   title: string;
   encoded: string;
+}
+
+export interface Testimonials {
+  fields: TestimonialFields;
+  image: ImageProps;
+}
+
+interface TestimonialFields {
+  author: string;
+  testimonial: string;
 }
 
 export interface AboutMeSection {
