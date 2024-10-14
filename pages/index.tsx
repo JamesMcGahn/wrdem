@@ -69,6 +69,7 @@ const Home = ({
           <Testimonial
             quote={testimonial[0].fields.testimonial}
             author={testimonial[0].fields.author}
+            image={testimonial[0].image}
           />
 
           {/* <FeatureImage

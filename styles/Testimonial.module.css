@@ -3,7 +3,25 @@
   padding: 4rem 4rem;
   display: flex;
   justify-content: center;
-  /* background-color: #dcdcdc; */
+}
+
+.card {
+  background-color: #a21e28;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  padding: 1em;
+}
+
+.cardImgCont {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  justify-content: center;
+}
+.cardImg {
+  border: 3px solid #0576bc;
+  min-width: 176px;
 }
 
 .innercontainer {
@@ -13,12 +31,15 @@
 }
 
 .quoteblock {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 2.5rem;
-  text-shadow: -1px -1px 1px rgba(255, 255, 255, 0.1), 1px 1px 1px rgba(0, 0, 0, 0.5);
+  /* padding: 2.5rem; */
+  padding: 1em 1em 0 1em;
+  text-shadow:
+    -1px -1px 1px rgba(255, 255, 255, 0.1),
+    1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 
 .quoteSym {
@@ -39,7 +60,7 @@
 .author {
   font-size: 1.5rem;
   align-self: end;
-  padding: 1rem 5rem 1rem 1rem;
+  padding: 0 5rem 1rem 1rem;
 }
 
 /*  Large devices (desktops, 992px and up) */
@@ -63,6 +84,29 @@
   .innercontainer {
     padding: 0 1rem;
   }
+
+  .card {
+    flex-direction: column;
+  }
+
+  .quote {
+    font-size: 1.1rem;
+  }
+
+  .author {
+    font-size: 1.1rem;
+    padding: 1rem 1rem 1rem 1rem;
+  }
+  .cardImgCont {
+    width: 100%;
+    align-items: center;
+  }
+  .cardImg {
+    width: 176px;
+  }
+  .quoteSym {
+    font-size: 1.1em;
+  }
 }
 
 @media (max-width: 375px) {
@@ -71,5 +115,32 @@
   }
   .innercontainer {
     padding: 0 0rem;
+  }
+
+  .card {
+    flex-direction: column;
+  }
+
+  .quote {
+    font-size: 1.1rem;
+  }
+
+  .author {
+    font-size: 1.1rem;
+    padding: 1rem 1rem 1rem 1rem;
+  }
+  .cardImgCont {
+    width: 100%;
+    align-items: center;
+  }
+  .cardImg {
+    width: 176px;
+  }
+  .quoteSym {
+    font-size: 1.1em;
+  }
+
+  .quoteblock {
+    padding: 0.5em 0.5em 0 0.5em;
   }
 }
