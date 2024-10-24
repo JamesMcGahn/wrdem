@@ -28,19 +28,21 @@ const MainNav = ({ navBios }: Props) => (
                 <Nav.Link>Home</Nav.Link>
               </Link>
             </div>
-            <div className={classes.navLinks}>
-              {navBios.map((bio) => {
-                const { href, display } = bio;
 
-                return (
-                  <Link href={`${href}`} passHref key={href}>
+            {navBios.map((bio) => {
+              const { href, display } = bio;
+
+              return (
+                <div className={classes.navLinks} key={href}>
+                  <Link href={`${href}`} passHref>
                     <Nav.Link className={classes.navLinks}>
                       {`About ${display.split(" ")[0]}`}
                     </Nav.Link>
                   </Link>
-                );
-              })}
-            </div>
+                </div>
+              );
+            })}
+
             <div className={classes.navLinks}>
               <Link href="/literature" passHref>
                 <Nav.Link>Literature</Nav.Link>
