@@ -23,7 +23,16 @@ export interface AboutMeSection {
   fields: AboutMeSectionFields;
   image: ImageProps;
 }
+export interface BioPage {
+  fields: BioPageFields;
+  image: ImageProps;
+}
 
+interface BioPageFields {
+  title: string;
+  biotext: string;
+  slug: string;
+}
 interface AboutMeSectionFields {
   title: string;
   aboutMeText: string;
