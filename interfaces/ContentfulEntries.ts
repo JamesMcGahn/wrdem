@@ -88,6 +88,8 @@ export interface ItemFields {
   displayOrder: number;
   idTag: string;
   image: AboutMeImage;
+  displayImage: AboutMeImage;
+  slug: string;
 }
 
 export interface ContentfulEntriesSys {
