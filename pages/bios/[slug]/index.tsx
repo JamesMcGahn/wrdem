@@ -17,7 +17,7 @@ type Props = {
   bioPage: BioPage;
 };
 
-const Home = ({ aboutMe, bioPage }: Props) => {
+const BioPages = ({ aboutMe, bioPage }: Props) => {
   const navBios = aboutMe.map((bio) => ({
     href: `/bios/${bio.fields.idTag}`,
     display: bio.fields.title,
@@ -51,8 +51,8 @@ const Home = ({ aboutMe, bioPage }: Props) => {
               <Markdown options={{ wrapper: React.Fragment }}>
                 {biotext}
               </Markdown>
-              {imageCont}
             </div>
+            {imageCont}
           </Card>
         </main>
       </div>
@@ -60,7 +60,7 @@ const Home = ({ aboutMe, bioPage }: Props) => {
   );
 };
 
-export default Home;
+export default BioPages;
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const res = await axios(
@@ -130,7 +130,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
   );
 
   const pageBio = pageBioData.filter((bio) => bio.fields.slug === slug);
-  console.log(pageBio);
 
   return {
     props: {

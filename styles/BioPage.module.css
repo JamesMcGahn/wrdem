@@ -22,13 +22,14 @@
 }
 
 .cardcontainer {
-  width: 65%;
+  width: 70%;
   height: 100%;
   min-height: 50vh;
   margin: 2em 1em;
   padding: 1.7em;
-  /* display: flex; */
-  /* justify-content: center; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .cardcontainer div > ul > li > ul {
@@ -41,7 +42,7 @@
 }
 
 .cardImg {
-  width: 100%;
+  width: 70%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -55,4 +56,42 @@
   min-width: 100%;
   min-height: 100%;
   position: relative !important;
+}
+
+@media (max-width: 1200px) {
+  .cardcontainer {
+    width: 80%;
+  }
+  .cardImg {
+    width: 80%;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (max-width: 768px) {
+  .cardcontainer {
+    width: 90%;
+  }
+  .cardImg {
+    width: 85%;
+  }
+}
+/*  Small devices (desktops, 576px and up) */
+@media (max-width: 768px) {
+}
+@media (max-width: 576px) {
+  .cardcontainer {
+    width: 98%;
+  }
+  .cardImg {
+    width: 100%;
+  }
+}
+@media (max-width: 375px) {
+  .cardcontainer {
+    width: 98%;
+  }
+  .cardImg {
+    width: 100%;
+  }
 }
