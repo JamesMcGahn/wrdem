@@ -38,7 +38,7 @@ const Home = ({
   const heroText = homeHero[0].fields;
 
   const navBios = aboutMe.map((bio) => ({
-    href: bio.fields.idTag,
+    href: `/bios/${bio.fields.idTag}`,
     display: bio.fields.title,
   }));
 
