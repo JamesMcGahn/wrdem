@@ -1,28 +1,60 @@
 import type { GetStaticProps, GetStaticPaths } from "next";
 import React from "react";
 import axios from "axios";
+import Markdown from "markdown-to-jsx";
+import Image from "next/future/image";
+import Card from "react-bootstrap/Card";
 import Layout from "../../../components/layout/Layout";
-import styles from "../../../styles/Home.module.css";
-import { AboutMeSection } from "../../../interfaces/ContentDataProps";
-import { ContentfulEntries } from "../../../interfaces/ContentfulEntries";
+import classes from "../../../styles/BioPage.module.css";
+import { AboutMeSection, BioPage } from "../../../interfaces/ContentDataProps";
+import { ContentfulEntries, Item } from "../../../interfaces/ContentfulEntries";
 
 // import FeatureImage from "../components/sections/FeatureImage";
 import encodeImg2hash from "../../../utils/encodeImg2hash";
 
 type Props = {
   aboutMe: AboutMeSection[];
+  bioPage: BioPage;
 };
 
-const Home = ({ aboutMe }: Props) => {
+const Home = ({ aboutMe, bioPage }: Props) => {
   const navBios = aboutMe.map((bio) => ({
-    href: bio.fields.idTag,
+    href: `/bios/${bio.fields.idTag}`,
     display: bio.fields.title,
   }));
+  // console.log(bioPage);
+  const { title, biotext } = bioPage.fields;
+  const { image } = bioPage;
+
+  const imageCont = (
+    <div className={classes.cardImg}>
+      <Image
+        fill
+        src={`https:${image.url}`}
+        quality="100"
+        alt={image.title}
+        priority
+        placeholder="blur"
+        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAECAYAAABLLYUHAAAAEklEQVR42mNsbKyrZ4ACRuI4APBQCAGXe98ZAAAAAElFTkSuQmCC"
+        sizes="100%"
+      />
+    </div>
+  );
 
   return (
     <Layout navBios={navBios}>
-      <div className={styles.container}>
-        <main className={styles.main}></main>
+      <div className={classes.container}>
+        <main className={classes.main}>
+          <Card className={classes.cardcontainer}>
+            <div className={classes.cardText}>
+              <h1>{title}</h1>
+              <Markdown options={{ wrapper: React.Fragment }}>
+                {biotext}
+              </Markdown>
+              {imageCont}
+            </div>
+          </Card>
+        </main>
       </div>
     </Layout>
   );
@@ -38,7 +70,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   const bios = data.items;
 
-  const paths = bios.map((bio) => ({
+  const paths = bios.map((bio: Item) => ({
     params: { slug: bio.fields.slug },
   }));
 
@@ -103,7 +135,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   return {
     props: {
       aboutMe: aboutMeData,
-      bio: pageBioData,
+      bioPage: pageBio[0],
     },
   };
 };

@@ -33,7 +33,7 @@ const MainNav = ({ navBios }: Props) => (
                 const { href, display } = bio;
 
                 return (
-                  <Link href={`/#${href}`} passHref key={href}>
+                  <Link href={`${href}`} passHref key={href}>
                     <Nav.Link className={classes.navLinks}>
                       {`About ${display.split(" ")[0]}`}
                     </Nav.Link>

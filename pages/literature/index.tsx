@@ -30,7 +30,7 @@ const Literature = ({ aboutMe }: Props) => {
   ];
 
   const navBios = aboutMe.map((bio) => ({
-    href: bio.fields.idTag,
+    href: `/bios/${bio.fields.idTag}`,
     display: bio.fields.title,
   }));
 
