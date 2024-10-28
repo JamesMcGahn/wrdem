@@ -17,14 +17,19 @@ const MainNav = ({ navBios }: Props) => (
   <Container className={classes.container} fluid>
     <Navbar id={classes.nav} bg="dark" expand="lg" variant="dark">
       <Container id={classes.innerCont}>
-        <Link href="/" passHref>
+        <Link href="/" passHref legacyBehavior>
           <Navbar.Brand href="#home">Wood-Ridge Democrats</Navbar.Brand>
         </Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
           <Nav className="ml-auto">
             <div className={classes.navLinks}>
-              <Link href="/" passHref className={classes.navLinks}>
+              <Link
+                href="/"
+                passHref
+                className={classes.navLinks}
+                legacyBehavior
+              >
                 <Nav.Link>Home</Nav.Link>
               </Link>
             </div>
@@ -34,7 +39,7 @@ const MainNav = ({ navBios }: Props) => (
 
               return (
                 <div className={classes.navLinks} key={href}>
-                  <Link href={`${href}`} passHref>
+                  <Link href={`${href}`} passHref legacyBehavior>
                     <Nav.Link className={classes.navLinks}>
                       {`About ${display.split(" ")[0]}`}
                     </Nav.Link>
@@ -44,7 +49,7 @@ const MainNav = ({ navBios }: Props) => (
             })}
 
             <div className={classes.navLinks}>
-              <Link href="/literature" passHref>
+              <Link href="/literature" passHref legacyBehavior>
                 <Nav.Link>Literature</Nav.Link>
               </Link>
             </div>
