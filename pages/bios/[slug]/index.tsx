@@ -2,7 +2,7 @@ import type { GetStaticProps, GetStaticPaths } from "next";
 import React from "react";
 import axios from "axios";
 import Markdown from "markdown-to-jsx";
-import Image from "next/future/image";
+import Image from "next/image";
 import Card from "react-bootstrap/Card";
 import Layout from "../../../components/layout/Layout";
 import classes from "../../../styles/BioPage.module.css";

@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/future/image";
+import Image from "next/image";
 import Markdown from "markdown-to-jsx";
 import Card from "react-bootstrap/Card";
 import classes from "../../styles/Testimonial.module.css";
