@@ -4,6 +4,7 @@ import Nav from "./Nav";
 import Footer from "./Footer";
 import classes from "../../styles/Layout.module.css";
 import { NavBios } from "../../interfaces/ContentDataProps";
+import { Analytics } from '@vercel/analytics/react';
 
 type Props = {
   children?: ReactNode;
@@ -31,6 +32,7 @@ const Layout = ({ children, navBios }: Props) => (
       <Nav navBios={navBios} />
     </header>
     <div className={classes.main}>{children}</div>
+    <Analytics />
     <Footer />
   </>
 );
