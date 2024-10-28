@@ -9,6 +9,7 @@ import { AboutMeSection } from "../../interfaces/ContentDataProps";
 import encodeImg2hash from "../../utils/encodeImg2hash";
 import electionBios from "../../public/static/imgs/2024camplit/WR-2024-Election-Bios.jpg";
 import electionTeam from "../../public/static/imgs/2024camplit/WR-2024-Election-Team.jpg";
+import electionFamily from "../../public/static/imgs/2024camplit/WR-2024-Election-Family.jpg";
 import { ContentfulEntries } from "../../interfaces/ContentfulEntries";
 
 type Props = {
@@ -18,9 +19,14 @@ type Props = {
 const Literature = ({ aboutMe }: Props) => {
   const imagesArry = [
     {
+      img: electionFamily,
+      alt: "2024 Vote Team Sarlo - Community Service",
+      priority: true,
+    },
+    {
       img: electionBios,
       alt: "2024 Vote Team Sarlo Bios",
-      priority: true,
+      priority: false,
     },
     {
       img: electionTeam,
