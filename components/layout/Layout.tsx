@@ -1,10 +1,10 @@
 import React, { ReactNode } from "react";
+import { Analytics } from "@vercel/analytics/react";
 import Head from "next/head";
 import Nav from "./Nav";
 import Footer from "./Footer";
 import classes from "../../styles/Layout.module.css";
 import { NavBios } from "../../interfaces/ContentDataProps";
-import { Analytics } from '@vercel/analytics/react';
 
 type Props = {
   children?: ReactNode;
