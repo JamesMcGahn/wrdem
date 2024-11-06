@@ -1,0 +1,90 @@
+.container {
+  margin-top: 3em;
+}
+
+.card {
+  background: #a21e28;
+  padding: 1em;
+}
+
+.cardText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-wrap: wrap;
+  width: 100%;
+}
+
+.title {
+  color: #fdd74c;
+  text-align: center;
+}
+
+.body {
+  color: white;
+  font-size: 1.4em;
+  width: 100%;
+  text-align: center;
+}
+
+/*  Small devices (desktops, 576px and up) */
+@media (max-width: 768px) {
+  .container {
+    margin-top: 2em;
+    margin-bottom: 2em;
+  }
+}
+
+@media (max-width: 684px) {
+  .container {
+    margin: 2em 1em;
+  }
+
+  .body {
+    color: white;
+    font-size: 1.1em;
+  }
+}
+@media (max-width: 605px) {
+  .container {
+    margin: 2em 1em;
+  }
+
+  .title {
+    font-size: 1.5em;
+  }
+
+  .body {
+    color: white;
+    font-size: 1em;
+  }
+}
+
+@media (max-width: 475px) {
+  .container {
+    margin: 2em 1em;
+  }
+
+  .title {
+    font-size: 1.4em;
+  }
+
+  .body {
+    color: white;
+    font-size: 1em;
+  }
+}
+@media (max-width: 318px) {
+  .container {
+    margin: 2em 1em;
+  }
+
+  .title {
+    font-size: 1.2em;
+  }
+
+  .body {
+    color: white;
+    font-size: 1em;
+  }
+}

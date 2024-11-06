@@ -12,12 +12,14 @@ import {
   HomeHero,
   Testimonials,
   VoteCall2ActionSection,
+  MessageBannerSection,
 } from "../interfaces/ContentDataProps";
 import { ContentfulEntries } from "../interfaces/ContentfulEntries";
 import AccomplishSummary from "../components/sections/AccomplishSummary";
 import VoteCall2Action from "../components/sections/VoteCall2Action";
 // import FeatureImage from "../components/sections/FeatureImage";
 import encodeImg2hash from "../utils/encodeImg2hash";
+import MessageBanner from "../components/sections/MessageBanner";
 
 type Props = {
   aboutMe: AboutMeSection[];
@@ -25,6 +27,7 @@ type Props = {
   accomplishSum: AccomplishSummarySection;
   testimonial: Testimonials[];
   voteCall2Action: VoteCall2ActionSection;
+  messageBanner: MessageBannerSection;
 };
 
 const Home = ({
@@ -33,6 +36,7 @@ const Home = ({
   accomplishSum,
   voteCall2Action,
   testimonial,
+  messageBanner,
 }: Props) => {
   const heroImg = homeHero[0].image;
   const heroText = homeHero[0].fields;
@@ -46,6 +50,10 @@ const Home = ({
     <Layout navBios={navBios}>
       <div className={styles.container}>
         <main className={styles.main}>
+          <MessageBanner
+            title={messageBanner.title}
+            body={messageBanner.body}
+          />
           <HeroWide
             imgLink={`https:${heroImg.url}`}
             altText={heroImg.title}
@@ -110,6 +118,10 @@ export const getStaticProps: GetStaticProps = async () => {
   );
   const voteCall2Action = await axios(
     `https://cdn.contentful.com/spaces/nc2tb1hvkxx7/entries/4UKuYK2It9JIefwCqBzszC?access_token=${process.env.CONTENTFUL_TOKEN}`,
+  );
+
+  const messageBanner = await axios(
+    `https://cdn.contentful.com/spaces/nc2tb1hvkxx7/entries/6Etokm0x4cJQUJ8J7mhdyh?access_token=${process.env.CONTENTFUL_TOKEN}`,
   );
 
   const featureImageData = await axios(
@@ -180,6 +192,7 @@ export const getStaticProps: GetStaticProps = async () => {
       featureImage2,
       accomplishSum: accomplishSum.data.fields,
       voteCall2Action: voteCall2Action.data.fields,
+      messageBanner: messageBanner.data.fields,
     },
   };
 };

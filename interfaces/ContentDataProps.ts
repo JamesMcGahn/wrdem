@@ -61,3 +61,7 @@ export interface VoteCall2ActionSection {
   candidates: string;
   electiondateday: string;
 }
+export interface MessageBannerSection {
+  title: string;
+  body: string;
+}
